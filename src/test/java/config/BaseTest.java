@@ -20,7 +20,7 @@ public class BaseTest {
 
     @BeforeTest
     public void setUp() {
-        baseURI = "http://localhost:5000";
+        baseURI = System.getenv("APPS_URL") == null ? "http://localhost:5000" : System.getenv("APPS_URL");
         filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
     }
 

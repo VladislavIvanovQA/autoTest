@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  app:
+    image: test_app:latest
+    ports:
+      - 5000:5000
+  testing:
+    build: .
+    network_mode: host
+    environment:
+      APPS_URL: "http://localhost:5000"
+    command: java -jar /app/target/autoTest-1.0-fat-tests.jar /app/target/classes/testng.xml
+    depends_on:
+      - app
